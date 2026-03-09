@@ -56,7 +56,7 @@
 \begin{flushleft}
 \begin{tabular}{ l l }
     \textbf{Tema:} Trabajo en grupo &  \\
-    \textbf{Unidad de Organización Curricular:} & Profesionall. \\
+    \textbf{Unidad de Organización Curricular:} & Profesional. \\
     \textbf{Nivel y Paralelo:} & Cuarto - B \\
     \textbf{Alumnos participantes:} & Barragán García Fernando Danilo \\& García Amores Manolo José\\&Jumbo Cárdenas Jhon Francis \\& Pashma Alvarez Juan Carlos
      \\
@@ -148,7 +148,7 @@ Durante el desarrollo de la práctica, se determinó que la transformación de d
 
 Estos ejemplos evidencian que el SGBD actúa como la interfaz crítica entre los datos físicos almacenados en disco y la información lógica requerida por los usuarios.
 
-\subsection{Entidades y Atributos - Pago de Biblioteca (saldo\_biblioteca = 0)}
+\subsubsection{Entidades y Atributos - Pago de Biblioteca (saldo\_biblioteca = 0)}
 
 A continuación se detallan las entidades identificadas en el caso de estudio de pago de biblioteca y sus respectivos atributos:
 
@@ -163,7 +163,7 @@ A continuación se detallan las entidades identificadas en el caso de estudio de
     \item \textbf{Derecho\_Grado}: id\_derecho, estado, fecha\_aprobacion
 \end{itemize}
 
-\subsection{Entidades y Atributos - Privilegios de Acceso del Docente}
+\subsubsection{Entidades y Atributos - Privilegios de Acceso del Docente}
 
 A continuación se detallan las entidades identificadas en el caso de estudio de privilegios de acceso del docente y sus respectivos atributos:
 
@@ -178,7 +178,7 @@ A continuación se detallan las entidades identificadas en el caso de estudio de
     \item \textbf{Acceso}: id\_acceso, fecha\_acceso, estado
 \end{itemize}
 
-\subsection{Entidades y Atributos - Reserva de Aula}
+\subsubsection{Entidades y Atributos - Reserva de Aula}
 
 A continuación se detallan las entidades identificadas en el caso de estudio de reserva de aula y sus respectivos atributos:
 
@@ -193,7 +193,7 @@ A continuación se detallan las entidades identificadas en el caso de estudio de
     \item \textbf{Estado\_Reserva}: id\_estado, estado
 \end{itemize}
 
-\subsection{Entidades y Atributos - Ranking Académico}
+\subsubsection{Entidades y Atributos - Ranking Académico}
 
 A continuación se detallan las entidades identificadas en el caso de estudio de ranking académico y sus respectivos atributos:
 
@@ -208,7 +208,7 @@ A continuación se detallan las entidades identificadas en el caso de estudio de
     \item \textbf{Evaluacion}: id\_evaluacion, tipo, nota
 \end{itemize}
 
-\subsection{Entidades y Atributos - Registro en Redo Log (Recuperación ante Fallas)}
+\subsubsection{Entidades y Atributos - Registro en Redo Log (Recuperación ante Fallas)}
 
 A continuación se detallan las entidades identificadas en el caso de estudio de registro en Redo Log y sus respectivos atributos:
 
@@ -223,7 +223,7 @@ A continuación se detallan las entidades identificadas en el caso de estudio de
     \item \textbf{Evento\_Error}: id\_error, descripcion
 \end{itemize}
 
-\subsection{Entidades y Atributos - Metadatos del Esquema (Correo Institucional)}
+\subsubsection{Entidades y Atributos - Metadatos del Esquema (Correo Institucional)}
 
 A continuación se detallan las entidades identificadas en el caso de estudio de metadatos del esquema y sus respectivos atributos:
 
@@ -238,7 +238,7 @@ A continuación se detallan las entidades identificadas en el caso de estudio de
     \item \textbf{Servidor\_Correo}: id\_servidor, nombre\_servidor
 \end{itemize}
 
-\subsection{Entidades y Atributos - Buffer Manager (Velocidad del Sistema)}
+\subsubsection{Entidades y Atributos - Buffer Manager (Velocidad del Sistema)}
 
 A continuación se detallan las entidades identificadas en el caso de estudio de Buffer Manager y sus respectivos atributos:
 
@@ -253,7 +253,7 @@ A continuación se detallan las entidades identificadas en el caso de estudio de
     \item \textbf{Rendimiento\_Sistema}: id\_rendimiento, tasa\_hit
 \end{itemize}
 
-\subsection{Entidades y Atributos - Inclusión Social (tipo\_discapacidad)}
+\subsubsection{Entidades y Atributos - Inclusión Social (tipo\_discapacidad)}
 
 A continuación se detallan las entidades identificadas en el caso de estudio de inclusión social y sus respectivos atributos:
 
@@ -268,7 +268,7 @@ A continuación se detallan las entidades identificadas en el caso de estudio de
     \item \textbf{Evaluacion\_Social}: id\_evaluacion, resultado
 \end{itemize}
 
-\subsection{Entidades y Atributos - Rollback por Error de Restricción}
+\subsubsection{Entidades y Atributos - Rollback por Error de Restricción}
 
 A continuación se detallan las entidades identificadas en el caso de estudio de rollback por error de restricción y sus respectivos atributos:
 
@@ -283,7 +283,7 @@ A continuación se detallan las entidades identificadas en el caso de estudio de
     \item \textbf{Log\_Error}: id\_log, fecha
 \end{itemize}
 
-\subsection{Entidades y Atributos - Conteo de Estudiantes por Facultad}
+\subsubsection{Entidades y Atributos - Conteo de Estudiantes por Facultad}
 
 A continuación se detallan las entidades identificadas en el caso de estudio de conteo de estudiantes por facultad y sus respectivos atributos:
 
@@ -297,7 +297,41 @@ A continuación se detallan las entidades identificadas en el caso de estudio de
     \item \textbf{Reporte}: id\_reporte, fecha\_reporte
     \item \textbf{Planificacion}: id\_plan, presupuesto
 \end{itemize}
+\subsubsection{Pregunta 3: Definición y Justificación de Reglas de Negocio}
 
+Para que los datos crudos se transformen en información útil y confiable para la \textbf{UTA}, el sistema de "Préstamos de Equipos" debe regirse por reglas que aseguren la integridad y consistencia. A continuación, se detallan las 5 reglas principales con su respectivo porqué:
+
+\begin{enumerate}
+    \item \textbf{Validación de Estado Académico y Financiero}
+    \begin{itemize}
+        \item \textbf{Regla:} Solo usuarios con \texttt{estado = 'Activo'} y \texttt{saldo\_biblioteca = 0} pueden registrar un nuevo préstamo.
+        \item \textbf{Justificación:} Esta regla garantiza la \textbf{solvencia administrativa}. Evita que activos de la universidad sean entregados a personas que no tienen un vínculo vigente o que mantienen deudas, protegiendo el patrimonio institucional.
+    \end{itemize}
+
+    \item \textbf{Control de Exclusividad y Concurrencia (Anti-Duplicidad)}
+    \begin{itemize}
+        \item \textbf{Regla:} Un \texttt{id\_equipo} no puede estar asociado a dos registros de \texttt{Prestamo} activos simultáneamente.
+        \item \textbf{Justificación:} Previene el error lógico de "doble asignación". Sin esta regla, el sistema podría reportar que una misma laptop está en dos facultades distintas, destruyendo la veracidad de la información de inventario.
+    \end{itemize}
+
+    \item \textbf{Automatización de Sanciones por Temporalidad}
+    \begin{itemize}
+        \item \textbf{Regla:} Al superar la \texttt{fecha\_devolucion}, el sistema debe cambiar automáticamente el estado del usuario a \texttt{'Moroso'}.
+        \item \textbf{Justificación:} Asegura la \textbf{disponibilidad de recursos}. La penalización automática incentiva la devolución puntual, permitiendo que el flujo de equipos no se detenga por negligencia del usuario.
+    \end{itemize}
+
+    \item \textbf{Integridad de Identificación Física (Inventario)}
+    \begin{itemize}
+        \item \textbf{Regla:} No se permite el ingreso de préstamos si el \texttt{id\_etiqueta\_institucional} no existe en la tabla \texttt{Activos\_Fijos}.
+        \item \textbf{Justificación:} Evita el ingreso de "datos fantasma". Garantiza que cada equipo prestado esté debidamente codificado y bajo la responsabilidad del departamento de tecnologías de la UTA.
+    \end{itemize}
+
+    \item \textbf{Restricción de Capacidad por Bloque Horario}
+    \begin{itemize}
+        \item \textbf{Regla:} El número de préstamos activos no puede exceder la capacidad física configurada en la entidad \texttt{Aula}.
+        \item \textbf{Justificación:} Sirve para la \textbf{planificación logística}. Evita el hacinamiento en laboratorios y permite al sistema sugerir aulas alternativas si una facultad ha alcanzado su límite de ocupación.
+    \end{itemize}
+\end{enumerate}
 \subsection{Habilidades blandas empleadas en la práctica}
 
 \begin{itemize}
@@ -314,15 +348,20 @@ A continuación se detallan las entidades identificadas en el caso de estudio de
 
 \subsection{Conclusiones}
 \begin{itemize}
-    \item Conclusion 1
-    \item Conclusion 2
-    \item Conclusion 3
+    \item Se concluye que en la \textbf{UTA} los datos (como un número de cédula o una hora de marcación) no sirven de mucho por sí solos; necesitan ser organizados por el sistema para convertirse en información valiosa, como saber si un estudiante tiene derecho a graduarse o si un laboratorio está lleno.
+    
+    \item Identificar las 8 entidades nos permitió entender cómo organizar el sistema de préstamos. Al separar los datos en grupos claros (Estudiantes, Equipos, Multas, etc.), aseguramos que cada detalle importante esté guardado en su lugar y sea fácil de encontrar sin confusiones.
+    
+    \item Se determinó que las reglas son esenciales para que el sistema funcione bien en la vida real. Sin ellas, no habría control sobre quién devuelve los equipos a tiempo o quién tiene deudas, lo que causaría desorden y falta de equipos para otros compañeros.
 \end{itemize}
+
 \subsection{Recomendaciones}
 \begin{itemize}
-    \item Recomendacion 1
-    \item Recomendacion 2
-    \item Recomendacion 3
+    \item Se recomienda que el sistema esté conectado siempre a la base de datos central de la universidad para que los nombres y correos de los estudiantes estén siempre actualizados, evitando errores al momento de registrar un préstamo.
+    
+    \item Es aconsejable que al diseñar las tablas no se repita información innecesaria. Por ejemplo, es mejor guardar la carrera del estudiante una sola vez en su perfil en lugar de anotarla en cada préstamo, para que la base de datos sea más limpia y rápida.
+    
+    \item Se sugiere que el sistema envíe notificaciones automáticas a los usuarios cuando falte poco para su hora de entrega. Esto ayudaría a que se cumplan las reglas de forma más amigable y se mantenga una mejor rotación de los equipos en el laboratorio.
 \end{itemize}
 \subsection{Referencias}
 \vspace{-3em}

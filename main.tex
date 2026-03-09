@@ -121,6 +121,34 @@ Siguiendo el caso base del proyecto:"Préstamos de equipos", realizar:
 \end{itemize}
 \subsection{Resultados obtenidos}
 
+Durante el desarrollo de la práctica, se determinó que la transformación de datos en información requiere de un proceso de estructuración definido por el \textbf{Esquema de la BD}[cite: 64]. A continuación, se presentan 10 ejemplos complejos que demuestran cómo los datos crudos adquieren valor semántico y utilidad en la gestión académica y administrativa de la \textbf{UTA}:
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|c|p{5cm}|p{8cm}|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+\textbf{\#} & \textbf{Dato (Nivel Técnico / SGBD)} & \textbf{Información (Contexto Institucional)} \\ \hline
+1  & Log de transacción: \texttt{T1: UPDATE saldo\_biblioteca SET deuda = 0 WHERE id = '180...'} & Representa la \textbf{solvencia financiera} de un estudiante, permitiéndole generar su derecho a grado en la facultad. \\ \hline
+2  & Registro binario \texttt{0110} en el Diccionario de Datos (DD) vinculado a un usuario. & Define los \textbf{privilegios de acceso} (DCL) de un docente para modificar el sílabo de una asignatura en el sistema SIUTA. \\ \hline
+3  & Marcador de \texttt{Lock x} (Exclusivo) en la tabla de \texttt{Horarios\_Laboratorios}. & Indica que un aula está siendo \textbf{reservada actualmente}, evitando que otro administrativo asigne el mismo espacio al mismo tiempo[cite: 68, 69]. \\ \hline
+4  & Vector de rendimiento: \texttt{[7.5, 8.0, 4.0, 9.2]} asociado al \texttt{ID\_Software\_2026}. & Tras ser procesado por el SGBD, genera el \textbf{ranking de excelencia académica} para la asignación de becas institucionales. \\ \hline
+5  & Valor de \texttt{Timestamp} \texttt{2026-03-08 23:15:00} en un archivo de \texttt{Redo Log}. & Es el punto crítico para una \textbf{recuperación ante fallas}, asegurando que no se pierdan las notas subidas minutos antes de un corte eléctrico[cite: 90]. \\ \hline
+6  & Metadatos del esquema: \texttt{VARCHAR(100), NOT NULL, UNIQUE} para \texttt{correo\_inst}. & Garantiza la \textbf{integridad de la comunicación oficial}, asegurando que cada miembro de la comunidad UTA tenga un identificador único. \\ \hline
+7  & Tasa de \texttt{Hit} del 95\% en el \textbf{Manejador de Buffer} del servidor central. & Se traduce en una \textbf{alta velocidad de respuesta} del sistema durante las fechas de matriculación masiva de la universidad. \\ \hline
+8  & Instrucción DDL: \texttt{ALTER TABLE Estudiantes ADD COLUMN tipo\_discapacidad}. & Refleja una \textbf{política de inclusión social} de la UTA, permitiendo adaptar los servicios de bienestar estudiantil. \\ \hline
+9  & Estado de \texttt{Rollback} disparado por una violación de restricción (\textit{constraint}). & Asegura que la base de datos se mantenga en un \textbf{estado consistente} tras un intento erróneo de inscribir a un alumno en un nivel superior. \\ \hline
+10 & Agrupación de datos: \texttt{COUNT(est) GROUP BY facultad}. & Proporciona el \textbf{indicador estadístico de población estudiantil}, esencial para la planificación del presupuesto anual de la UTA. \\ \hline
+\end{tabular}
+\caption{Diferenciación técnica entre datos e información aplicada a la infraestructura de la UTA.}
+\end{table}
+
+
+
+Estos ejemplos evidencian que el SGBD actúa como la interfaz crítica entre los datos físicos almacenados en disco y la información lógica requerida por los usuarios.
+
+
 \subsection{Habilidades blandas empleadas en la práctica}
 
 \begin{itemize}

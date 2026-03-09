@@ -68,7 +68,7 @@
 
 \section{Informe de guía práctica}
 \subsubsection{General}
-Analizar el caso de estudio “Préstamos de equipos” mediante la identificación de datos e información, el reconocimiento de entidades y atributos, y la definición de reglas de negocio, con el fin de comprender cómo se estructura la información dentro de un sistema.
+Analizar el caso de estudio “Préstamos de equipos” a travé de la identificación de datos e información, el reconocimiento de entidades y atributos, y la definición de reglas de negocio, con el fin de comprender cómo se estructura la información dentro de un sistema.
 
 \subsubsection{Específicos}
 
@@ -136,7 +136,7 @@ Durante el desarrollo de la práctica, se determinó que la transformación de d
 4  & Vector de rendimiento: \texttt{[7.5, 8.0, 4.0, 9.2]} asociado al \texttt{ID\_Software\_2026}. & Tras ser procesado por el SGBD, genera el \textbf{ranking de excelencia académica} para la asignación de becas institucionales. \\ \hline
 5  & Valor de \texttt{Timestamp} \texttt{2026-03-08 23:15:00} en un archivo de \texttt{Redo Log}. & Es el punto crítico para una \textbf{recuperación ante fallas}, asegurando que no se pierdan las notas subidas minutos antes de un corte eléctrico[cite: 90]. \\ \hline
 6  & Metadatos del esquema: \texttt{VARCHAR(100), NOT NULL, UNIQUE} para \texttt{correo\_inst}. & Garantiza la \textbf{integridad de la comunicación oficial}, asegurando que cada miembro de la comunidad UTA tenga un identificador único. \\ \hline
-7  & Tasa de \texttt{Hit} del 95\% en el \textbf{Manejador de Buffer} del servidor central. & Se traduce en una \textbf{alta velocidad de respuesta} del sistema durante las fechas de matriculación masiva de la universidad. \\ \hline
+7  & Tasa de \texttt{Hit} del 95\% en el \textbf{Manejador de Buffer} del servidor principal o central. & Se traduce en una \textbf{alta velocidad de respuesta} del sistema durante las fechas de matriculación masiva de la universidad. \\ \hline
 8  & Instrucción DDL: \texttt{ALTER TABLE Estudiantes ADD COLUMN tipo\_discapacidad}. & Refleja una \textbf{política de inclusión social} de la UTA, permitiendo adaptar los servicios de bienestar estudiantil. \\ \hline
 9  & Estado de \texttt{Rollback} disparado por una violación de restricción (\textit{constraint}). & Asegura que la base de datos se mantenga en un \textbf{estado consistente} tras un intento erróneo de inscribir a un alumno en un nivel superior. \\ \hline
 10 & Agrupación de datos: \texttt{COUNT(est) GROUP BY facultad}. & Proporciona el \textbf{indicador estadístico de población estudiantil}, esencial para la planificación del presupuesto anual de la UTA. \\ \hline
@@ -148,6 +148,155 @@ Durante el desarrollo de la práctica, se determinó que la transformación de d
 
 Estos ejemplos evidencian que el SGBD actúa como la interfaz crítica entre los datos físicos almacenados en disco y la información lógica requerida por los usuarios.
 
+\subsection{Entidades y Atributos - Pago de Biblioteca (saldo\_biblioteca = 0)}
+
+A continuación se detallan las entidades identificadas en el caso de estudio de pago de biblioteca y sus respectivos atributos:
+
+\begin{itemize}
+    \item \textbf{Estudiante}: id\_estudiante, nombre, carrera, semestre
+    \item \textbf{Biblioteca}: id\_biblioteca, nombre, ubicación
+    \item \textbf{Préstamo}: id\_prestamo, fecha\_prestamo, fecha\_devolucion
+    \item \textbf{Multa}: id\_multa, monto, estado\_pago
+    \item \textbf{Pago}: id\_pago, fecha\_pago, monto
+    \item \textbf{Libro}: id\_libro, titulo, autor, isbn
+    \item \textbf{Cuenta\_Biblioteca}: id\_cuenta, saldo\_biblioteca
+    \item \textbf{Derecho\_Grado}: id\_derecho, estado, fecha\_aprobacion
+\end{itemize}
+
+\subsection{Entidades y Atributos - Privilegios de Acceso del Docente}
+
+A continuación se detallan las entidades identificadas en el caso de estudio de privilegios de acceso del docente y sus respectivos atributos:
+
+\begin{itemize}
+    \item \textbf{Usuario}: id\_usuario, nombre, correo
+    \item \textbf{Docente}: id\_docente, especialidad, departamento
+    \item \textbf{Rol}: id\_rol, nombre\_rol
+    \item \textbf{Permiso}: id\_permiso, tipo\_permiso, descripcion
+    \item \textbf{Asignatura}: id\_asignatura, nombre, créditos
+    \item \textbf{Silabo}: id\_silabo, version, fecha\_actualizacion
+    \item \textbf{Sistema}: id\_sistema, nombre\_sistema
+    \item \textbf{Acceso}: id\_acceso, fecha\_acceso, estado
+\end{itemize}
+
+\subsection{Entidades y Atributos - Reserva de Aula}
+
+A continuación se detallan las entidades identificadas en el caso de estudio de reserva de aula y sus respectivos atributos:
+
+\begin{itemize}
+    \item \textbf{Aula}: id\_aula, numero, capacidad
+    \item \textbf{Reserva}: id\_reserva, fecha, hora\_inicio
+    \item \textbf{Horario}: id\_horario, dia, hora
+    \item \textbf{Evento}: id\_evento, nombre\_evento, descripcion
+    \item \textbf{Docente}: id\_docente, nombre, facultad
+    \item \textbf{Asignatura}: id\_asignatura, nombre
+    \item \textbf{Bloque\_Horario}: id\_bloque, hora\_inicio, hora\_fin
+    \item \textbf{Estado\_Reserva}: id\_estado, estado
+\end{itemize}
+
+\subsection{Entidades y Atributos - Ranking Académico}
+
+A continuación se detallan las entidades identificadas en el caso de estudio de ranking académico y sus respectivos atributos:
+
+\begin{itemize}
+    \item \textbf{Estudiante}: id\_estudiante, nombre, carrera
+    \item \textbf{Rendimiento}: id\_rendimiento, promedio, periodo
+    \item \textbf{Beca}: id\_beca, nombre\_beca, monto
+    \item \textbf{Ranking}: id\_ranking, posicion, puntaje
+    \item \textbf{Asignatura}: id\_asignatura, nombre, creditos
+    \item \textbf{Periodo\_Academico}: id\_periodo, año, semestre
+    \item \textbf{Facultad}: id\_facultad, nombre
+    \item \textbf{Evaluacion}: id\_evaluacion, tipo, nota
+\end{itemize}
+
+\subsection{Entidades y Atributos - Registro en Redo Log (Recuperación ante Fallas)}
+
+A continuación se detallan las entidades identificadas en el caso de estudio de registro en Redo Log y sus respectivos atributos:
+
+\begin{itemize}
+    \item \textbf{Transaccion}: id\_transaccion, fecha\_inicio, estado
+    \item \textbf{Log}: id\_log, fecha\_registro, tipo\_evento
+    \item \textbf{Usuario}: id\_usuario, nombre
+    \item \textbf{Sistema}: id\_sistema, version
+    \item \textbf{Operacion}: id\_operacion, tipo\_operacion
+    \item \textbf{Tabla}: id\_tabla, nombre\_tabla
+    \item \textbf{Backup}: id\_backup, fecha\_backup
+    \item \textbf{Evento\_Error}: id\_error, descripcion
+\end{itemize}
+
+\subsection{Entidades y Atributos - Metadatos del Esquema (Correo Institucional)}
+
+A continuación se detallan las entidades identificadas en el caso de estudio de metadatos del esquema y sus respectivos atributos:
+
+\begin{itemize}
+    \item \textbf{Usuario}: id\_usuario, nombre
+    \item \textbf{Correo\_Institucional}: correo\_inst, estado
+    \item \textbf{Dominio}: id\_dominio, nombre\_dominio
+    \item \textbf{Departamento}: id\_departamento, nombre
+    \item \textbf{Rol}: id\_rol, nombre
+    \item \textbf{Cuenta}: id\_cuenta, fecha\_creacion
+    \item \textbf{Permiso}: id\_permiso, descripcion
+    \item \textbf{Servidor\_Correo}: id\_servidor, nombre\_servidor
+\end{itemize}
+
+\subsection{Entidades y Atributos - Buffer Manager (Velocidad del Sistema)}
+
+A continuación se detallan las entidades identificadas en el caso de estudio de Buffer Manager y sus respectivos atributos:
+
+\begin{itemize}
+    \item \textbf{Servidor}: id\_servidor, nombre, ip
+    \item \textbf{Buffer}: id\_buffer, tamaño, estado
+    \item \textbf{Cache}: id\_cache, capacidad
+    \item \textbf{Consulta}: id\_consulta, tipo\_consulta
+    \item \textbf{Usuario}: id\_usuario, nombre
+    \item \textbf{Transaccion}: id\_transaccion, tiempo\_respuesta
+    \item \textbf{Memoria}: id\_memoria, capacidad
+    \item \textbf{Rendimiento\_Sistema}: id\_rendimiento, tasa\_hit
+\end{itemize}
+
+\subsection{Entidades y Atributos - Inclusión Social (tipo\_discapacidad)}
+
+A continuación se detallan las entidades identificadas en el caso de estudio de inclusión social y sus respectivos atributos:
+
+\begin{itemize}
+    \item \textbf{Estudiante}: id\_estudiante, nombre
+    \item \textbf{Discapacidad}: id\_discapacidad, tipo\_discapacidad
+    \item \textbf{Servicio\_Bienestar}: id\_servicio, nombre\_servicio
+    \item \textbf{Beneficio}: id\_beneficio, descripcion
+    \item \textbf{Registro\_Apoyo}: id\_registro, fecha
+    \item \textbf{Facultad}: id\_facultad, nombre
+    \item \textbf{Programa\_Inclusion}: id\_programa, nombre
+    \item \textbf{Evaluacion\_Social}: id\_evaluacion, resultado
+\end{itemize}
+
+\subsection{Entidades y Atributos - Rollback por Error de Restricción}
+
+A continuación se detallan las entidades identificadas en el caso de estudio de rollback por error de restricción y sus respectivos atributos:
+
+\begin{itemize}
+    \item \textbf{Transaccion}: id\_transaccion, estado
+    \item \textbf{Operacion}: id\_operacion, tipo
+    \item \textbf{Error}: id\_error, descripcion
+    \item \textbf{Constraint}: id\_constraint, tipo\_constraint
+    \item \textbf{Usuario}: id\_usuario, nombre
+    \item \textbf{Tabla}: id\_tabla, nombre
+    \item \textbf{Registro}: id\_registro, fecha\_modificacion
+    \item \textbf{Log\_Error}: id\_log, fecha
+\end{itemize}
+
+\subsection{Entidades y Atributos - Conteo de Estudiantes por Facultad}
+
+A continuación se detallan las entidades identificadas en el caso de estudio de conteo de estudiantes por facultad y sus respectivos atributos:
+
+\begin{itemize}
+    \item \textbf{Estudiante}: id\_estudiante, nombre
+    \item \textbf{Facultad}: id\_facultad, nombre
+    \item \textbf{Carrera}: id\_carrera, nombre
+    \item \textbf{Matricula}: id\_matricula, fecha
+    \item \textbf{Periodo\_Academico}: id\_periodo, año
+    \item \textbf{Estadistica}: id\_estadistica, total\_estudiantes
+    \item \textbf{Reporte}: id\_reporte, fecha\_reporte
+    \item \textbf{Planificacion}: id\_plan, presupuesto
+\end{itemize}
 
 \subsection{Habilidades blandas empleadas en la práctica}
 

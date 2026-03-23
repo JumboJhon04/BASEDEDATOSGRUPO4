@@ -128,6 +128,20 @@ Para el desarrollo de esta guía práctica se aplicó una metodología de diseñ
     \item Definir 5 reglas de negocio (ej.: estado del equipo, plazo de devolución).
 \end{itemize}
 \subsection{Resultados obtenidos}
+\subsubsection{Mapa de Interacción de Entidades}
+Para comprender el flujo de la información, se esquematiza la relación de jerarquía entre las entidades principales identificadas:
+
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{Entidad Origen} & \textbf{Relación} & \textbf{Entidad Destino} \\ \hline
+Estudiante & Realiza & Préstamo \\ \hline
+Equipo & Es objeto de & Préstamo \\ \hline
+Préstamo & Genera (si hay atraso) & Multa \\ \hline
+Docente & Autoriza & Reserva\_Aula \\ \hline
+\end{tabular}
+\end{center}
 
 Durante el desarrollo de la práctica, se determinó que la transformación de datos en información requiere de un proceso de estructuración definido por el \textbf{Esquema de la BD}[cite: 64]. A continuación, se presentan 10 ejemplos complejos que demuestran cómo los datos crudos adquieren valor semántico y utilidad en la gestión académica y administrativa de la \textbf{UTA}:
 

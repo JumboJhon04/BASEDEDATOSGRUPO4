@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SistemaInventario.API.Extensions;
 using SistemaInventario.Application.DTOs;
@@ -91,6 +91,24 @@ public class PrestamosController : ControllerBase
 
             var result = await _repository.FinalizarPrestamoAsync(id, idUsuarioActor);
             return result ? Ok(new { m = "Devolución completada" }) : BadRequest(new { error = "No se pudo finalizar el préstamo." });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
+    }
+
+    [HttpPut("rechazar/{id}")]
+    [Authorize(Roles = "Administrador,Docente")]
+    public async Task<IActionResult> Rechazar(int id)
+    {
+        try
+        {
+            if (!User.TryGetUserId(out var idUsuarioActor))
+                return Unauthorized(new { message = "Token inválido: no se pudo obtener el usuario actor." });
+
+            var result = await _repository.RechazarPrestamoAsync(id, idUsuarioActor);
+            return result ? Ok(new { m = "Solicitud de préstamo rechazada correctamente" }) : BadRequest(new { error = "No se pudo rechazar la solicitud." });
         }
         catch (Exception ex)
         {

@@ -5,6 +5,7 @@
         Pendiente,
         Activo,
         Vencido,
-        Finalizado
+        Finalizado,
+        Rechazado
     }
 }

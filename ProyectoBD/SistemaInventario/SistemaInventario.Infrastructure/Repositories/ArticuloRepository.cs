@@ -72,7 +72,7 @@ namespace SistemaInventario.Infrastructure.Repositories
                 VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10})";
 
             var affected = await _context.Database.ExecuteSqlRawAsync(sql,
-                articulo.Codigo.Valor, // 👈 Aquí ya viene validado con el -UTA-
+                articulo.Codigo.Valor, //  Aquí ya viene validado con el -UTA-
                 articulo.Nombre,
                 articulo.Marca,
                 articulo.Modelo,

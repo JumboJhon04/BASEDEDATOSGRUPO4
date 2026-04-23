@@ -44,3 +44,8 @@ export async function updateArticulo(id, payload) {
   const response = await httpClient.put(`/Articulos/${id}`, payload)
   return response.data
 }
+
+export async function createArticulo(payload) {
+  const response = await httpClient.post('/Articulos', payload)
+  return response.data
+}

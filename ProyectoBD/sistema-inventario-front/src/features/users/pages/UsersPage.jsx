@@ -31,6 +31,7 @@ function UsersPage() {
   const [editingUserId, setEditingUserId] = useState(null)
   const [formData, setFormData] = useState(initialForm)
   const [errorMessage, setErrorMessage] = useState('')
+  const [searchTerm, setSearchTerm] = useState('')
 
   const roleOptions = useMemo(() => {
     return roles.length > 0 ? roles : fallbackRoles
@@ -61,6 +62,16 @@ function UsersPage() {
     setLoading(true)
     await fetchUsers()
   }
+
+  const filteredUsers = useMemo(() => {
+    const term = searchTerm.toLowerCase().trim()
+    if (!term) return users
+    return users.filter(user => 
+      (user.nombre?.toLowerCase().includes(term)) ||
+      (user.cedula?.toLowerCase().includes(term)) ||
+      (user.correo?.toLowerCase().includes(term))
+    )
+  }, [users, searchTerm])
 
   // Carga inicial de datos del modulo al montar la vista.
   useEffect(() => {
@@ -193,6 +204,24 @@ function UsersPage() {
       >
         {errorMessage ? <p className="feedback-error">{errorMessage}</p> : null}
 
+        <div className="inventory-filters-card mb-4" style={{ padding: '16px', marginBottom: '20px' }}>
+          <div className="inventory-filter-grid" style={{ gridTemplateColumns: '1fr auto', alignItems: 'flex-end' }}>
+            <label>
+              <span style={{ fontWeight: '700', color: '#4a5168', fontSize: '0.9rem', marginBottom: '8px', display: 'block' }}>Buscar Usuario</span>
+              <input 
+                type="text" 
+                placeholder="Nombre, Cédula o Correo..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{ width: '100%' }}
+              />
+            </label>
+            <div className="inventory-filter-actions" style={{ padding: 0 }}>
+              <button className="btn btn-ghost" onClick={() => setSearchTerm('')} type="button">Limpiar</button>
+            </div>
+          </div>
+        </div>
+
         <div className="users-table-card">
           <div className="users-table-head">
             <span>Cédula</span>
@@ -206,10 +235,10 @@ function UsersPage() {
           <div className="users-table-body">
             {loading ? (
               <p className="users-empty">Cargando usuarios...</p>
-            ) : users.length === 0 ? (
-              <p className="users-empty">No hay usuarios para mostrar.</p>
+            ) : filteredUsers.length === 0 ? (
+              <p className="users-empty">No hay usuarios que coincidan con la búsqueda.</p>
             ) : (
-              users.map((user) => (
+              filteredUsers.map((user) => (
                 <article className="users-row" key={user.idUsuario}>
                   <span>{user.cedula || '-'}</span>
                   <span>{user.nombre}</span>
@@ -313,16 +342,6 @@ function UsersPage() {
                   placeholder="Solicitar Correo Electronico"
                 />
               </label>
-
-              {isEditMode ? (
-                <label className="users-form-span-2">
-                  Estado
-                  <select name="estado" value={formData.estado} onChange={handleChange}>
-                    <option value="Activo">Activo</option>
-                    <option value="Inactivo">Inactivo</option>
-                  </select>
-                </label>
-              ) : null}
 
               {isEditMode ? (
                 <label className="users-form-span-2">

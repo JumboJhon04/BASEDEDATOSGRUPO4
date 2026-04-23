@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using SistemaInventario.Application.DTOs;
 using SistemaInventario.Application.Interfaces;
@@ -15,6 +15,7 @@ namespace SistemaInventario.Infrastructure.Repositories
         private const string EstadoActivo     = "Activo";
         private const string EstadoVencido    = "Vencido";
         private const string EstadoFinalizado = "Finalizado";
+        private const string EstadoRechazado  = "Rechazado";
 
         public PrestamoRepository(ApplicationDbContext context, IAuditoriaRepository auditoriaRepository)
         {
@@ -215,6 +216,39 @@ namespace SistemaInventario.Infrastructure.Repositories
             {
                 await transaction.RollbackAsync();
                 throw new InvalidOperationException($"Error al aprobar préstamo: {ex.Message}", ex);
+            }
+        }
+
+        public async Task<bool> RechazarPrestamoAsync(int idPrestamo, int idAdminAutoriza)
+        {
+            try
+            {
+                var filasPrestamo = await _context.Database.ExecuteSqlRawAsync(
+                    @"UPDATE PRESTAMOS
+                      SET ID_ADMIN_AUTORIZA = {1}, ESTADO_PRESTAMO = {2}
+                      WHERE ID_PRESTAMO = {0} AND ESTADO_PRESTAMO = {3}",
+                    idPrestamo,
+                    idAdminAutoriza,
+                    EstadoRechazado,
+                    EstadoPendiente);
+
+                if (filasPrestamo == 0)
+                    return false;
+
+                await _auditoriaRepository.RegistrarAccionAsync(new AuditoriaCreateDTO
+                {
+                    IdUsuario = idAdminAutoriza,
+                    TablaAfectada = "PRESTAMOS",
+                    IdRegistroAfectado = idPrestamo,
+                    Accion = "UPDATE",
+                    DetallesCambio = $"Solicitud de préstamo RECHAZADA. ID={idPrestamo}"
+                });
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException($"Error al rechazar préstamo: {ex.Message}", ex);
             }
         }
 

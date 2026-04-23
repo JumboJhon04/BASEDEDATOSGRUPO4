@@ -1910,37 +1910,50 @@
 
 
 .articulo-form {
-  padding: 20px 24px;
+  padding: 24px 28px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: 18px;
+  background: #ffffff;
 }
 
 .articulo-form label {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  font-weight: 700;
-  color: #3b4054;
+  gap: 7px;
+  font-weight: 600;
+  color: #4a5168;
+  font-size: 0.9rem;
 }
 
 .articulo-form input,
 .articulo-form select,
 .articulo-form textarea {
-  border: 1px solid #ccd2e3;
-  border-radius: 9px;
-  background: #fbfcff;
-  padding: 11px 12px;
-  color: #2d3247;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  background: #f8fafc;
+  padding: 10px 14px;
+  color: #1e293b;
   font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
   resize: vertical;
+}
+
+.articulo-form input:hover,
+.articulo-form select:hover,
+.articulo-form textarea:hover {
+  border-color: #cbd5e1;
+  background: #f1f5f9;
 }
 
 .articulo-form input:focus,
 .articulo-form select:focus,
 .articulo-form textarea:focus {
-  outline: 2px solid rgba(201, 56, 68, 0.22);
+  outline: none;
   border-color: #c93844;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(201, 56, 68, 0.1);
 }
 
 .articulo-form-span-2 {
@@ -1951,7 +1964,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 4px 0;
+  margin: 10px 0 4px;
 }
 
 .articulo-form-divider::before,
@@ -1959,21 +1972,22 @@
   content: '';
   flex: 1;
   height: 1px;
-  background: #dce0ea;
+  background: #eef2f7;
 }
 
 .articulo-form-divider span {
-  font-size: 0.8rem;
-  font-weight: 800;
+  font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #6a7282;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
   white-space: nowrap;
 }
 
 @media (max-width: 1024px) {
   .articulo-form {
     grid-template-columns: 1fr;
+    padding: 16px 20px;
   }
 
   .articulo-form-span-2 {
@@ -1985,28 +1999,52 @@
 .inventory-upload-panel {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+  background: #fcfdfe;
+  border: 1.5px dashed #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.2s ease;
+}
+
+.inventory-upload-panel:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
 }
 
 .inventory-upload-label {
-  font-weight: 700;
-  color: #3b4054;
-  font-size: 0.95rem;
+  font-weight: 600;
+  color: #475569;
+  font-size: 0.9rem;
 }
 
 .inventory-upload-hint {
   font-weight: 400;
-  font-size: 0.82rem;
-  color: #8491a8;
+  font-size: 0.8rem;
+  color: #94a3b8;
 }
 
 .inventory-upload-input {
-  border: 1.5px dashed #ccd2e3;
-  border-radius: 9px;
-  padding: 10px 12px;
-  background: #f8faff;
-  color: #4a5168;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: #ffffff;
+  color: #64748b;
+  font-size: 0.85rem;
   cursor: pointer;
+}
+
+.inventory-upload-filename {
+  font-size: 0.8rem;
+  color: #334155;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 6px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
 }
 
 .inventory-upload-input:hover {

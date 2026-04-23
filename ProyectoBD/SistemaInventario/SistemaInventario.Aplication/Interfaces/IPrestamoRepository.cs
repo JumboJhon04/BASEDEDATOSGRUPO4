@@ -1,4 +1,4 @@
-﻿using SistemaInventario.Application.DTOs;
+using SistemaInventario.Application.DTOs;
 
 namespace SistemaInventario.Application.Interfaces
 {
@@ -12,6 +12,9 @@ namespace SistemaInventario.Application.Interfaces
 
         // Aprobar un préstamo pendiente
         Task<bool> AprobarPrestamoAsync(int idPrestamo, int idAdminAutoriza);
+
+        // Rechazar un préstamo pendiente
+        Task<bool> RechazarPrestamoAsync(int idPrestamo, int idAdminAutoriza);
 
         // Ver todos los préstamos registrados
         Task<IEnumerable<PrestamoDTO>> ObtenerTodosPrestamosAsync();

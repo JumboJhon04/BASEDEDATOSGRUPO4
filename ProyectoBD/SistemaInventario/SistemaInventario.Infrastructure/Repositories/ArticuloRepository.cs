@@ -39,6 +39,7 @@ namespace SistemaInventario.Infrastructure.Repositories
                               NumeroSerie = a.NumeroSerie,
                               Estado = a.Estado.ToString(),
                               DescripcionTecnica = a.DescripcionTecnica,
+                              ObservacionesFisicas = a.ObservacionesFisicas,
                               IdCategoria = a.IdCategoria,
                               Categoria = c != null ? c.NombreCategoria : null,
                               IdUbicacion = a.IdUbicacion,

@@ -56,17 +56,50 @@
   transition: width 0.3s ease;
 }
 
-.dashboard-kpi-card-total .dashboard-kpi-meter span { background: #4d5871; }
-.dashboard-kpi-card-success .dashboard-kpi-meter span { background: #1e8f55; }
-.dashboard-kpi-card-info .dashboard-kpi-meter span { background: #2c78d5; }
-.dashboard-kpi-card-danger .dashboard-kpi-meter span { background: #d63c3c; }
-.dashboard-kpi-card-warning .dashboard-kpi-meter span { background: #c3821d; }
+.dashboard-kpi-card-total .dashboard-kpi-meter span {
+  background: #4d5871;
+}
 
-.dashboard-kpi-card-total { border-color: #aebad1; background: linear-gradient(180deg, #f8fbff, #edf2ff); }
-.dashboard-kpi-card-success { border-color: #addcc1; background: linear-gradient(180deg, #f6fff9, #e8f8ef); }
-.dashboard-kpi-card-info { border-color: #a9c7ef; background: linear-gradient(180deg, #f6faff, #e7f0ff); }
-.dashboard-kpi-card-danger { border-color: #efb5b5; background: linear-gradient(180deg, #fff8f8, #ffeaea); }
-.dashboard-kpi-card-warning { border-color: #ebcd9c; background: linear-gradient(180deg, #fffdf8, #fff3dc); }
+.dashboard-kpi-card-success .dashboard-kpi-meter span {
+  background: #1e8f55;
+}
+
+.dashboard-kpi-card-info .dashboard-kpi-meter span {
+  background: #2c78d5;
+}
+
+.dashboard-kpi-card-danger .dashboard-kpi-meter span {
+  background: #d63c3c;
+}
+
+.dashboard-kpi-card-warning .dashboard-kpi-meter span {
+  background: #c3821d;
+}
+
+.dashboard-kpi-card-total {
+  border-color: #aebad1;
+  background: linear-gradient(180deg, #f8fbff, #edf2ff);
+}
+
+.dashboard-kpi-card-success {
+  border-color: #addcc1;
+  background: linear-gradient(180deg, #f6fff9, #e8f8ef);
+}
+
+.dashboard-kpi-card-info {
+  border-color: #a9c7ef;
+  background: linear-gradient(180deg, #f6faff, #e7f0ff);
+}
+
+.dashboard-kpi-card-danger {
+  border-color: #efb5b5;
+  background: linear-gradient(180deg, #fff8f8, #ffeaea);
+}
+
+.dashboard-kpi-card-warning {
+  border-color: #ebcd9c;
+  background: linear-gradient(180deg, #fffdf8, #fff3dc);
+}
 
 .dashboard-table-section {
   display: flex;
@@ -282,18 +315,60 @@
     padding: 6px 12px;
   }
 
-  .dashboard-loan-grid span:nth-child(1)::before { content: 'Articulo: '; font-weight: 700; }
-  .dashboard-loan-grid span:nth-child(2)::before { content: 'Prestatario: '; font-weight: 700; }
-  .dashboard-loan-grid span:nth-child(3)::before { content: 'Fecha de Salida: '; font-weight: 700; }
-  .dashboard-loan-grid span:nth-child(4)::before { content: 'Fecha Prevista: '; font-weight: 700; }
-  .dashboard-loan-grid span:nth-child(5)::before { content: 'Estado: '; font-weight: 700; }
-  .dashboard-loan-grid span:nth-child(6)::before { content: 'Acciones: '; font-weight: 700; }
+  .dashboard-loan-grid span:nth-child(1)::before {
+    content: 'Articulo: ';
+    font-weight: 700;
+  }
 
-  .dashboard-maintenance-grid span:nth-child(1)::before { content: 'Articulo: '; font-weight: 700; }
-  .dashboard-maintenance-grid span:nth-child(2)::before { content: 'Tipo: '; font-weight: 700; }
-  .dashboard-maintenance-grid span:nth-child(3)::before { content: 'Fecha Programada: '; font-weight: 700; }
-  .dashboard-maintenance-grid span:nth-child(4)::before { content: 'Estado: '; font-weight: 700; }
-  .dashboard-maintenance-grid span:nth-child(5)::before { content: 'Acciones: '; font-weight: 700; }
+  .dashboard-loan-grid span:nth-child(2)::before {
+    content: 'Prestatario: ';
+    font-weight: 700;
+  }
+
+  .dashboard-loan-grid span:nth-child(3)::before {
+    content: 'Fecha de Salida: ';
+    font-weight: 700;
+  }
+
+  .dashboard-loan-grid span:nth-child(4)::before {
+    content: 'Fecha Prevista: ';
+    font-weight: 700;
+  }
+
+  .dashboard-loan-grid span:nth-child(5)::before {
+    content: 'Estado: ';
+    font-weight: 700;
+  }
+
+  .dashboard-loan-grid span:nth-child(6)::before {
+    content: 'Acciones: ';
+    font-weight: 700;
+  }
+
+  .dashboard-maintenance-grid span:nth-child(1)::before {
+    content: 'Articulo: ';
+    font-weight: 700;
+  }
+
+  .dashboard-maintenance-grid span:nth-child(2)::before {
+    content: 'Tipo: ';
+    font-weight: 700;
+  }
+
+  .dashboard-maintenance-grid span:nth-child(3)::before {
+    content: 'Fecha Programada: ';
+    font-weight: 700;
+  }
+
+  .dashboard-maintenance-grid span:nth-child(4)::before {
+    content: 'Estado: ';
+    font-weight: 700;
+  }
+
+  .dashboard-maintenance-grid span:nth-child(5)::before {
+    content: 'Acciones: ';
+    font-weight: 700;
+  }
 
   .dashboard-table-row span:last-child {
     padding-bottom: 12px;
@@ -561,10 +636,25 @@
   font-size: 0.84rem;
 }
 
-.inventory-kpi-card-total { border-color: #bfc9da; background: linear-gradient(180deg, #f8fbff, #eef3ff); }
-.inventory-kpi-card-success { border-color: #b5e0c8; background: linear-gradient(180deg, #f5fff8, #e9f8ef); }
-.inventory-kpi-card-info { border-color: #b8d1f1; background: linear-gradient(180deg, #f6faff, #e8f1ff); }
-.inventory-kpi-card-warning { border-color: #efd1a2; background: linear-gradient(180deg, #fffdf7, #fff3de); }
+.inventory-kpi-card-total {
+  border-color: #bfc9da;
+  background: linear-gradient(180deg, #f8fbff, #eef3ff);
+}
+
+.inventory-kpi-card-success {
+  border-color: #b5e0c8;
+  background: linear-gradient(180deg, #f5fff8, #e9f8ef);
+}
+
+.inventory-kpi-card-info {
+  border-color: #b8d1f1;
+  background: linear-gradient(180deg, #f6faff, #e8f1ff);
+}
+
+.inventory-kpi-card-warning {
+  border-color: #efd1a2;
+  background: linear-gradient(180deg, #fffdf7, #fff3de);
+}
 
 .inventory-filters-card {
   margin-top: 14px;
@@ -718,9 +808,17 @@
   cursor: not-allowed;
 }
 
-.inventory-icon-button-view { background: #356fe0; }
-.inventory-icon-button-edit { background: #e0a31d; }
-.inventory-icon-button-delete { background: #db4c4c; }
+.inventory-icon-button-view {
+  background: #356fe0;
+}
+
+.inventory-icon-button-edit {
+  background: #e0a31d;
+}
+
+.inventory-icon-button-delete {
+  background: #db4c4c;
+}
 
 .inventory-detail-card {
   display: flex;
@@ -748,13 +846,11 @@
   border: 1px solid #b7bdc9;
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.75), rgba(233, 237, 245, 0.95)),
-    repeating-linear-gradient(
-      45deg,
+    repeating-linear-gradient(45deg,
       rgba(52, 62, 84, 0.08) 0,
       rgba(52, 62, 84, 0.08) 2px,
       transparent 2px,
-      transparent 10px
-    );
+      transparent 10px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -940,13 +1036,11 @@
   color: #566077;
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(226, 232, 240, 0.8)),
-    repeating-linear-gradient(
-      45deg,
+    repeating-linear-gradient(45deg,
       rgba(91, 104, 132, 0.12) 0,
       rgba(91, 104, 132, 0.12) 2px,
       transparent 2px,
-      transparent 14px
-    );
+      transparent 14px);
 }
 
 .inventory-detail-image-placeholder span {
@@ -1180,6 +1274,7 @@
 }
 
 @media (max-width: 1024px) {
+
   .inventory-top-grid,
   .inventory-filter-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1206,13 +1301,40 @@
     padding: 6px 12px;
   }
 
-  .inventory-grid span:nth-child(1)::before { content: 'ID: '; font-weight: 700; }
-  .inventory-grid span:nth-child(2)::before { content: 'Nombre: '; font-weight: 700; }
-  .inventory-grid span:nth-child(3)::before { content: 'Categoría: '; font-weight: 700; }
-  .inventory-grid span:nth-child(4)::before { content: 'Estado: '; font-weight: 700; }
-  .inventory-grid span:nth-child(5)::before { content: 'Ubicación: '; font-weight: 700; }
-  .inventory-grid span:nth-child(6)::before { content: 'Responsable: '; font-weight: 700; }
-  .inventory-grid span:nth-child(7)::before { content: 'Acciones: '; font-weight: 700; }
+  .inventory-grid span:nth-child(1)::before {
+    content: 'ID: ';
+    font-weight: 700;
+  }
+
+  .inventory-grid span:nth-child(2)::before {
+    content: 'Nombre: ';
+    font-weight: 700;
+  }
+
+  .inventory-grid span:nth-child(3)::before {
+    content: 'Categoría: ';
+    font-weight: 700;
+  }
+
+  .inventory-grid span:nth-child(4)::before {
+    content: 'Estado: ';
+    font-weight: 700;
+  }
+
+  .inventory-grid span:nth-child(5)::before {
+    content: 'Ubicación: ';
+    font-weight: 700;
+  }
+
+  .inventory-grid span:nth-child(6)::before {
+    content: 'Responsable: ';
+    font-weight: 700;
+  }
+
+  .inventory-grid span:nth-child(7)::before {
+    content: 'Acciones: ';
+    font-weight: 700;
+  }
 
   .inventory-detail-card {
     grid-template-columns: 1fr;
@@ -1221,6 +1343,7 @@
 }
 
 @media (max-width: 780px) {
+
   .inventory-top-grid,
   .inventory-filter-grid {
     grid-template-columns: 1fr;
@@ -1439,6 +1562,7 @@
 }
 
 @media (max-width: 1100px) {
+
   .dashboard-hero,
   .dashboard-note-grid,
   .dashboard-module-grid {
@@ -1451,6 +1575,7 @@
 }
 
 @media (max-width: 780px) {
+
   .dashboard-section-heading,
   .module-header {
     align-items: flex-start;
@@ -1771,4 +1896,129 @@
   .auth-form-title {
     font-size: 1.5rem;
   }
+}
+
+/* ── Articulo edit form ──────────────────────────────────── */
+.articulo-modal-card {
+  width: min(680px, 100%);
+}
+
+.articulo-modal-body {
+  max-height: 72vh;
+  overflow-y: auto;
+}
+
+
+.articulo-form {
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.articulo-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 700;
+  color: #3b4054;
+}
+
+.articulo-form input,
+.articulo-form select,
+.articulo-form textarea {
+  border: 1px solid #ccd2e3;
+  border-radius: 9px;
+  background: #fbfcff;
+  padding: 11px 12px;
+  color: #2d3247;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.articulo-form input:focus,
+.articulo-form select:focus,
+.articulo-form textarea:focus {
+  outline: 2px solid rgba(201, 56, 68, 0.22);
+  border-color: #c93844;
+}
+
+.articulo-form-span-2 {
+  grid-column: 1 / -1;
+}
+
+.articulo-form-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0;
+}
+
+.articulo-form-divider::before,
+.articulo-form-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #dce0ea;
+}
+
+.articulo-form-divider span {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6a7282;
+  white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+  .articulo-form {
+    grid-template-columns: 1fr;
+  }
+
+  .articulo-form-span-2 {
+    grid-column: auto;
+  }
+}
+
+/* ── Inventory upload panel ──────────────────────── */
+.inventory-upload-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inventory-upload-label {
+  font-weight: 700;
+  color: #3b4054;
+  font-size: 0.95rem;
+}
+
+.inventory-upload-hint {
+  font-weight: 400;
+  font-size: 0.82rem;
+  color: #8491a8;
+}
+
+.inventory-upload-input {
+  border: 1.5px dashed #ccd2e3;
+  border-radius: 9px;
+  padding: 10px 12px;
+  background: #f8faff;
+  color: #4a5168;
+  cursor: pointer;
+}
+
+.inventory-upload-input:hover {
+  border-color: #a0b0cc;
+  background: #f0f4ff;
+}
+
+.inventory-upload-filename {
+  font-size: 0.85rem;
+  color: #5563a0;
+  background: #eef1fa;
+  border-radius: 6px;
+  padding: 5px 10px;
+  display: inline-block;
 }

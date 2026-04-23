@@ -42,13 +42,30 @@ namespace SistemaInventario.Domain.Entities
             Estado = EstadoPrestamo.Activo;
         }
 
+        /// <summary>
+        /// Al devolver el artículo, el préstamo pasa a Finalizado.
+        /// Se acepta tanto Activo como Vencido porque un préstamo vencido
+        /// también puede ser devuelto tarde.
+        /// </summary>
         public void FinalizarPrestamo()
         {
-            if (Estado != EstadoPrestamo.Activo)
-                throw new DomainException("Solo se puede finalizar un préstamo en estado Activo.");
+            if (Estado != EstadoPrestamo.Activo && Estado != EstadoPrestamo.Vencido)
+                throw new DomainException("Solo se puede finalizar un préstamo en estado Activo o Vencido.");
 
             Estado = EstadoPrestamo.Finalizado;
             FechaDevolucionReal = DateTime.Now;
+        }
+
+        /// <summary>
+        /// Marca el préstamo como Vencido cuando la FechaPrevista ya pasó
+        /// y el artículo aún no fue devuelto. Lo invoca el repositorio al consultar.
+        /// </summary>
+        public void MarcarVencido()
+        {
+            if (Estado != EstadoPrestamo.Activo)
+                throw new DomainException("Solo un préstamo Activo puede marcarse como Vencido.");
+
+            Estado = EstadoPrestamo.Vencido;
         }
     }
 }

@@ -21,5 +21,12 @@ namespace SistemaInventario.Application.Interfaces
 
         // Finalizar y marcar artículos como disponibles nuevamente
         Task<bool> FinalizarPrestamoAsync(int idPrestamo, int idUsuarioActor);
+
+        /// <summary>
+        /// Revisa todos los préstamos Activos cuya FechaPrevista ya pasó
+        /// y los marca como Vencido en la base de datos.
+        /// Se llama automáticamente al consultar préstamos.
+        /// </summary>
+        Task MarcarVencidosAsync();
     }
 }

@@ -39,3 +39,8 @@ export async function linkArticuloImage(idArticulo, urlImagen) {
   const response = await httpClient.post('/Imagenes/subir', payload)
   return response.data
 }
+
+export async function updateArticulo(id, payload) {
+  const response = await httpClient.put(`/Articulos/${id}`, payload)
+  return response.data
+}

@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
-import { Bell, LogOut } from 'lucide-react'
+import { Bell, LogOut, Menu, X } from 'lucide-react'
 import { appRoutes } from '@/app/router/routes'
 import { getRoutesByRole, toRoleLabel } from '@/core/auth/roles'
 import useAuth from '@/core/auth/useAuth'
@@ -15,10 +16,23 @@ function DashboardLayout() {
       .map((part) => part[0]?.toUpperCase())
       .join('') || 'US'
 
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
   return (
     <div className="app-shell">
       <header className="app-header">
-        <div className="app-brand">Sistema de Gestion de Inventario</div>
+        <div className="app-header-left">
+          <button
+            className="header-icon-button sidebar-toggle"
+            type="button"
+            aria-label={sidebarOpen ? 'Cerrar menú' : 'Abrir menú'}
+            onClick={() => setSidebarOpen((prev) => !prev)}
+          >
+            {sidebarOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
+          </button>
+          <div className="app-brand">Sistema de Gestion de Inventario</div>
+        </div>
+
         <div className="header-user">
           <span className="header-user-role">{toRoleLabel(currentRole)}</span>
           <button className="header-icon-button" type="button" aria-label="Notificaciones">
@@ -34,11 +48,19 @@ function DashboardLayout() {
       </header>
 
       <div className="app-main">
-        <aside className="app-sidebar">
-          <nav className="menu">
+        {/* Overlay for mobile sidebar */}
+        {sidebarOpen ? (
+          <div
+            className="sidebar-overlay"
+            role="presentation"
+            onClick={() => setSidebarOpen(false)}
+          />
+        ) : null}
+
+        <aside className={`app-sidebar${sidebarOpen ? ' sidebar-open' : ''}`}>
+          <nav className="menu" onClick={() => setSidebarOpen(false)}>
             {visibleRoutes.map((route) => {
               const Icon = route.icon
-
               return (
                 <NavLink
                   key={route.path}

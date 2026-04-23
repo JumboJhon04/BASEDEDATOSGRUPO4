@@ -19,5 +19,8 @@
 # Archivos de entorno local (opcional, pero buena práctica)
 appsettings.Development.json
 
+# Secrets de desarrollo — contiene password de BD y JWT key local
+**/Properties/launchSettings.json
+
 # Mac (por si alguien clona en Mac)
 .DS_Store

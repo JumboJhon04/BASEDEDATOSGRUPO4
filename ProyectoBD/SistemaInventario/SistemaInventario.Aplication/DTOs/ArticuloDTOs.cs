@@ -10,6 +10,7 @@
         public string? NumeroSerie { get; set; } // Agregado según RF03 
         public string Estado { get; set; } = string.Empty;
         public string? DescripcionTecnica { get; set; } // Agregado según RF03 
+        public string? ObservacionesFisicas { get; set; }
         public int IdCategoria { get; set; }
         public string? Categoria { get; set; }
         public int IdUbicacion { get; set; }

@@ -2,22 +2,22 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
-# Copiamos la solución directamente (ya estamos al mismo nivel)
-COPY SistemaInventario.* ./
+# Copiamos el .sln desde la raíz del repositorio
+COPY SistemaInventario.slnx ./
 
-# Copiamos los archivos .csproj usando los nombres exactos de tus proyectos
+# Copiamos los .csproj con los nombres correctos de tus carpetas
 COPY SistemaInventario.API/SistemaInventario.API.csproj ./SistemaInventario.API/
 COPY SistemaInventario.Aplication/SistemaInventario.Aplication.csproj ./SistemaInventario.Aplication/
 COPY SistemaInventario.Domain/SistemaInventario.Domain.csproj ./SistemaInventario.Domain/
 COPY SistemaInventario.Infrastructure/SistemaInventario.Infrastructure.csproj ./SistemaInventario.Infrastructure/
 
-# Restauramos los paquetes NuGet de toda la solución
-RUN dotnet restore SistemaInventario.*
+# Restauramos los paquetes NuGet
+RUN dotnet restore SistemaInventario.slnx
 
-# Copiamos absolutamente todo el resto del código al contenedor
+# Copiamos todo el resto del código
 COPY . .
 
-# Nos movemos a la ruta de la API para compilar el publish
+# Compilamos y publicamos desde el proyecto API
 WORKDIR "/src/SistemaInventario.API"
 RUN dotnet publish -c Release -o /app/publish /p:UseAppHost=false
 
@@ -30,5 +30,4 @@ EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
 ENV ASPNETCORE_ENVIRONMENT=Production
 
-# Ejecutamos tu DLL real del proyecto API
 ENTRYPOINT ["dotnet", "SistemaInventario.API.dll"]

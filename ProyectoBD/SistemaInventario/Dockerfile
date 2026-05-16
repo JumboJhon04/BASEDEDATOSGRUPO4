@@ -2,22 +2,22 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
-# Copiamos la solución desde la carpeta SistemaInventario
-COPY SistemaInventario/SistemaInventario.* ./SistemaInventario/
+# Copiamos la solución directamente (ya estamos al mismo nivel)
+COPY SistemaInventario.* ./
 
-# Copiamos cada archivo .csproj apuntando ADENTRO de la carpeta SistemaInventario
-COPY SistemaInventario/SistemaInventario.API/SistemaInventario.API.csproj ./SistemaInventario.API/
-COPY SistemaInventario/SistemaInventario.Aplication/SistemaInventario.Aplication.csproj ./SistemaInventario.Aplication/
-COPY SistemaInventario/SistemaInventario.Domain/SistemaInventario.Domain.csproj ./SistemaInventario.Domain/
-COPY SistemaInventario/SistemaInventario.Infrastructure/SistemaInventario.Infrastructure.csproj ./SistemaInventario.Infrastructure/
+# Copiamos los archivos .csproj usando los nombres exactos de tus proyectos
+COPY SistemaInventario.API/SistemaInventario.API.csproj ./SistemaInventario.API/
+COPY SistemaInventario.Aplication/SistemaInventario.Aplication.csproj ./SistemaInventario.Aplication/
+COPY SistemaInventario.Domain/SistemaInventario.Domain.csproj ./SistemaInventario.Domain/
+COPY SistemaInventario.Infrastructure/SistemaInventario.Infrastructure.csproj ./SistemaInventario.Infrastructure/
 
-# Restauramos los paquetes NuGet usando la solución
-RUN dotnet restore SistemaInventario/SistemaInventario.*
+# Restauramos los paquetes NuGet de toda la solución
+RUN dotnet restore SistemaInventario.*
 
 # Copiamos absolutamente todo el resto del código al contenedor
 COPY . .
 
-# Nos movemos a la ruta interna de la API para compilar el publish
+# Nos movemos a la ruta de la API para compilar el publish
 WORKDIR "/src/SistemaInventario.API"
 RUN dotnet publish -c Release -o /app/publish /p:UseAppHost=false
 
@@ -30,4 +30,5 @@ EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
 ENV ASPNETCORE_ENVIRONMENT=Production
 
+# Ejecutamos tu DLL real del proyecto API
 ENTRYPOINT ["dotnet", "SistemaInventario.API.dll"]

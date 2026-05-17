@@ -264,34 +264,51 @@ namespace SistemaInventario.Infrastructure.Repositories
             if (simulateOnly)
                 return true;
 
-            var host = _configuration["Smtp:Host"];
+            // Cambiamos las variables SMTP viejas por la API Key y el correo de origen
+            var apiKey = _configuration["Brevo:ApiKey"];
             var from = _configuration["Smtp:From"];
-            var user = _configuration["Smtp:User"];
-            var password = _configuration["Smtp:Password"];
-            var enableSsl = ParseBool(_configuration["Smtp:EnableSsl"], true);
-            var port = ParseInt(_configuration["Smtp:Port"], 587);
 
-            if (string.IsNullOrWhiteSpace(host) || string.IsNullOrWhiteSpace(from) || string.IsNullOrWhiteSpace(user) || string.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(apiKey) || string.IsNullOrWhiteSpace(from))
             {
-                _logger.LogWarning("Configuración SMTP incompleta. Verifica Host/From/User/Password.");
+                _logger.LogWarning("Configuración de correo incompleta. Verifica Brevo:ApiKey y Smtp:From.");
                 return false;
             }
 
-            using var client = new SmtpClient(host, port)
+            try
             {
-                EnableSsl = enableSsl,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false
-            };
+                using var client = new HttpClient();
+                client.DefaultRequestHeaders.Add("api-key", apiKey);
+                client.DefaultRequestHeaders.Add("accept", "application/json");
 
-            if (!string.IsNullOrWhiteSpace(user))
-            {
-                client.Credentials = new NetworkCredential(user, password);
+                // Construimos el JSON nativo que espera la API
+                var payload = new
+                {
+                    sender = new { email = from, name = "Sistema de Inventario" },
+                    to = new[] { new { email = destino } },
+                    subject = asunto,
+                    htmlContent = cuerpo
+                };
+
+                string jsonString = System.Text.Json.JsonSerializer.Serialize(payload);
+                using var content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json");
+
+                // Render permite el puerto 443 (HTTPS) sin restricciones
+                var response = await client.PostAsync("https://api.brevo.com/v3/smtp/email", content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    string errorResponse = await response.Content.ReadAsStringAsync();
+                    _logger.LogWarning($"La API de correo respondió con error: {response.StatusCode} - {errorResponse}");
+                    return false;
+                }
+
+                return true;
             }
-
-            using var message = new MailMessage(from, destino, asunto, cuerpo);
-            await client.SendMailAsync(message);
-            return true;
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error crítico al intentar conectar con la API de mensajería.");
+                return false;
+            }
         }
 
         private static bool ParseBool(string? value, bool defaultValue)

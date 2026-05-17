@@ -183,8 +183,6 @@ function EstudianteDashboardPage() {
 
           <section className="dashboard-table-section">
             <div className="dashboard-section-topline">
-              <strong className="dashboard-kpi-value">{loansLoading ? '…' : overdueLoansCount}</strong>
-              <p className="dashboard-kpi-detail">Hay notificaciones de entrega pendiente o vencida</p>
             </div>
             <span style={{ width: `${loansLoading ? 0 : Math.min(100, overdueLoansCount * 35 + 15)}%` }} />
             <div className="dashboard-table-card">

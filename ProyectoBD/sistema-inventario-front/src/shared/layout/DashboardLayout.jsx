@@ -144,7 +144,7 @@ function DashboardLayout() {
           <span className="header-user-avatar">{initials}</span>
           <button className="header-logout" type="button" onClick={logout}>
             <LogOut size={16} aria-hidden="true" />
-            Salir
+            <span>Salir</span>
           </button>
         </div>
       </header>

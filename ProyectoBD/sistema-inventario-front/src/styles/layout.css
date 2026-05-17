@@ -55,9 +55,9 @@
 
 .header-notification-panel {
   position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  width: min(360px, 82vw);
+  top: calc(100% + 12px);
+  right: -20px;
+  width: min(340px, 90vw);
   max-height: 420px;
   overflow: hidden;
   border-radius: 14px;
@@ -386,7 +386,21 @@
     font-size: 0.95rem;
   }
 
+  .header-notification-panel {
+    position: fixed;
+    top: 62px;
+    left: 14px;
+    right: 14px;
+    width: auto;
+    max-width: none;
+  }
+
   .header-logout {
+    padding: 6px;
+    border-radius: 50%;
+  }
+
+  .header-logout span {
     display: none;
   }
 
@@ -445,26 +459,16 @@
     padding: 14px;
   }
 
-  /* Inventory table on small screens */
-  .inventory-grid {
-    grid-template-columns: 50px 1fr 100px 90px;
-  }
 
-  .inventory-table-head span:nth-child(5),
-  .inventory-table-head span:nth-child(6),
-  .inventory-table-row span:nth-child(5),
-  .inventory-table-row span:nth-child(6) {
-    display: none;
-  }
 
   /* Detail layout stacks */
   .inventory-detail-layout {
     grid-template-columns: 1fr;
   }
 
-  /* Filter grid stacks */
   .inventory-filter-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr !important;
+    gap: 12px;
   }
 
   .inventory-filter-actions {
@@ -494,7 +498,7 @@
   }
 
   .inventory-filter-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 
   .articulo-form {
@@ -506,6 +510,6 @@
   }
 
   .dashboard-kpi-row {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 }

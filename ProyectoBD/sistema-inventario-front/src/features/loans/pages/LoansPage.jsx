@@ -62,6 +62,8 @@ function LoansPage() {
   const [rejectingLoan, setRejectingLoan] = useState(null)
   const [rejectSubmitting, setRejectSubmitting] = useState(false)
 
+  const [sendingReminderId, setSendingReminderId] = useState(null)
+
   // Finalize modal state
   const [showFinalizeModal, setShowFinalizeModal] = useState(false)
   const [finalizingLoan, setFinalizingLoan] = useState(null)
@@ -189,11 +191,14 @@ function LoansPage() {
 
   const handleSendReminder = async (loan) => {
     setErrorMessage('')
+    setSendingReminderId(loan.idPrestamo)
     try {
       await sendLoanReminder(loan.idPrestamo)
       setSuccessMessage(`Recordatorio enviado para el préstamo #${String(loan.idPrestamo).padStart(3, '0')}.`)
     } catch (error) {
       setErrorMessage(error.response?.data?.error ?? 'No se pudo enviar el recordatorio.')
+    } finally {
+      setSendingReminderId(null)
     }
   }
 
@@ -378,7 +383,7 @@ function LoansPage() {
                     </button>
                   )}
                   {loan.estado === 'Vencido' && (
-                    <button className="inventory-icon-button" style={{ background: '#ca8a04' }} title="Enviar recordatorio" aria-label="Enviar recordatorio" onClick={() => handleSendReminder(loan)}>
+                    <button className="inventory-icon-button" style={{ background: sendingReminderId === loan.idPrestamo ? '#d4b266' : '#ca8a04', opacity: sendingReminderId === loan.idPrestamo ? 0.7 : 1 }} title="Enviar recordatorio" aria-label="Enviar recordatorio" onClick={() => handleSendReminder(loan)} disabled={sendingReminderId === loan.idPrestamo}>
                       <Bell size={16} />
                     </button>
                   )}

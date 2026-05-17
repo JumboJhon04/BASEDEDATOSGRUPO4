@@ -68,10 +68,13 @@ function MaintenancePage() {
   }
 
   const [successModal, setSuccessModal] = useState({ show: false, message: '', title: '' })
+  const [processingId, setProcessingId] = useState(null)
 
   const handleAcceptFromReport = async (report) => {
+    const id = report.idMantenimiento ?? report.id
+    setProcessingId(id)
     try {
-      await acceptMaintenance(report.idMantenimiento ?? report.id)
+      await acceptMaintenance(id)
       await loadData()
       setSuccessModal({
         show: true,
@@ -89,13 +92,17 @@ function MaintenancePage() {
           : rawMessage || 'Ocurrió un error inesperado. Intenta de nuevo.'
       })
       console.error(err)
+    } finally {
+      setProcessingId(null)
     }
   }
 
   const handleRejectFromReport = async (report) => {
+    const id = report.idMantenimiento ?? report.id
+    setProcessingId(id)
     try {
       setReportActionError('')
-      await rejectMaintenance(report.idMantenimiento ?? report.id)
+      await rejectMaintenance(id)
       await loadData()
       setSuccessModal({
         show: true,
@@ -108,6 +115,8 @@ function MaintenancePage() {
         show: true,
         message: err.response?.data?.error ?? 'No se pudo rechazar el reporte.'
       })
+    } finally {
+      setProcessingId(null)
     }
   }
 
@@ -250,10 +259,10 @@ function MaintenancePage() {
                     </button>
                     {String(r.estado ?? r.estadoMantenimiento ?? '').toLowerCase() === 'pendiente' ? (
                       <>
-                        <button className="inventory-icon-button" style={{ background: '#22c55e' }} title="Aceptar reporte" aria-label="Aceptar reporte" onClick={() => handleAcceptFromReport(r)}>
+                        <button className="inventory-icon-button" style={{ background: processingId === (r.idMantenimiento ?? r.id) ? '#86efac' : '#22c55e', opacity: processingId === (r.idMantenimiento ?? r.id) ? 0.7 : 1 }} title="Aceptar reporte" aria-label="Aceptar reporte" onClick={() => handleAcceptFromReport(r)} disabled={processingId === (r.idMantenimiento ?? r.id)}>
                           <Check size={16} />
                         </button>
-                        <button className="inventory-icon-button inventory-icon-button-delete" title="Rechazar reporte" aria-label="Rechazar reporte" onClick={() => handleRejectFromReport(r)}>
+                        <button className="inventory-icon-button inventory-icon-button-delete" style={{ opacity: processingId === (r.idMantenimiento ?? r.id) ? 0.7 : 1 }} title="Rechazar reporte" aria-label="Rechazar reporte" onClick={() => handleRejectFromReport(r)} disabled={processingId === (r.idMantenimiento ?? r.id)}>
                           <X size={16} />
                         </button>
                       </>

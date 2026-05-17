@@ -140,7 +140,8 @@
 .dashboard-table-card {
   border: 1px solid #d9dde6;
   background: #fff;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .dashboard-table-head,
@@ -148,6 +149,7 @@
   display: grid;
   gap: 0;
   align-items: center;
+  min-width: 800px;
 }
 
 .dashboard-table-head {
@@ -161,6 +163,8 @@
 .dashboard-table-row span {
   padding: 11px 8px;
   border-right: 1px solid #cfd5df;
+  min-width: 0;
+  word-break: break-word;
 }
 
 .dashboard-table-head span:last-child,
@@ -179,11 +183,13 @@
 }
 
 .dashboard-loan-grid {
-  grid-template-columns: 1.35fr 1fr 1fr 1fr 0.8fr 0.7fr;
+  grid-template-columns: 1.1fr 1fr 1fr 1fr 110px 92px;
+  min-width: 800px;
 }
 
 .dashboard-maintenance-grid {
-  grid-template-columns: 1.4fr 1.1fr 1fr 0.8fr 0.7fr;
+  grid-template-columns: 1.2fr 1fr 1fr 120px 92px;
+  min-width: 800px;
 }
 
 .dashboard-action-button {
@@ -297,82 +303,6 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .dashboard-loan-grid,
-  .dashboard-maintenance-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .dashboard-table-head {
-    display: none;
-  }
-
-  .dashboard-table-row {
-    padding: 8px 0;
-  }
-
-  .dashboard-table-row span {
-    border-right: 0;
-    padding: 6px 12px;
-  }
-
-  .dashboard-loan-grid span:nth-child(1)::before {
-    content: 'Articulo: ';
-    font-weight: 700;
-  }
-
-  .dashboard-loan-grid span:nth-child(2)::before {
-    content: 'Prestatario: ';
-    font-weight: 700;
-  }
-
-  .dashboard-loan-grid span:nth-child(3)::before {
-    content: 'Fecha de Salida: ';
-    font-weight: 700;
-  }
-
-  .dashboard-loan-grid span:nth-child(4)::before {
-    content: 'Fecha Prevista: ';
-    font-weight: 700;
-  }
-
-  .dashboard-loan-grid span:nth-child(5)::before {
-    content: 'Estado: ';
-    font-weight: 700;
-  }
-
-  .dashboard-loan-grid span:nth-child(6)::before {
-    content: 'Acciones: ';
-    font-weight: 700;
-  }
-
-  .dashboard-maintenance-grid span:nth-child(1)::before {
-    content: 'Articulo: ';
-    font-weight: 700;
-  }
-
-  .dashboard-maintenance-grid span:nth-child(2)::before {
-    content: 'Tipo: ';
-    font-weight: 700;
-  }
-
-  .dashboard-maintenance-grid span:nth-child(3)::before {
-    content: 'Fecha Programada: ';
-    font-weight: 700;
-  }
-
-  .dashboard-maintenance-grid span:nth-child(4)::before {
-    content: 'Estado: ';
-    font-weight: 700;
-  }
-
-  .dashboard-maintenance-grid span:nth-child(5)::before {
-    content: 'Acciones: ';
-    font-weight: 700;
-  }
-
-  .dashboard-table-row span:last-child {
-    padding-bottom: 12px;
-  }
 }
 
 @media (max-width: 780px) {
@@ -771,7 +701,8 @@
   border: 1px solid #d9dde6;
   background: #fff;
   border-radius: 14px;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .inventory-grid {
@@ -779,6 +710,7 @@
   grid-template-columns: 72px 1.2fr 1fr 0.8fr 1fr 1fr 132px;
   gap: 0;
   align-items: center;
+  min-width: 900px;
 }
 
 .inventory-table-head {
@@ -792,6 +724,8 @@
 .inventory-table-row span {
   padding: 11px 10px;
   border-right: 1px solid #cfd5df;
+  min-width: 0;
+  word-break: break-word;
 }
 
 .inventory-table-head span:last-child,
@@ -848,13 +782,15 @@
 
 .my-loans-grid {
   display: grid;
-  grid-template-columns: 110px 1.35fr 1fr 1fr 1fr 0.85fr 1fr 1fr;
+  grid-template-columns: 110px 1.5fr 1fr 1fr 1.2fr 1fr 1.2fr 1.1fr;
   gap: 0;
   align-items: center;
+  min-width: 1150px;
 }
 
 .my-loans-grid span {
   min-width: 0;
+  word-break: break-word;
 }
 
 .my-loans-id {
@@ -961,10 +897,12 @@
   grid-template-columns: 1.4fr 1fr 1fr 1fr 0.9fr 1fr;
   gap: 0;
   align-items: center;
+  min-width: 800px;
 }
 
 .docente-equipos-grid span {
   min-width: 0;
+  word-break: break-word;
 }
 
 .docente-equipos-article {
@@ -1219,13 +1157,7 @@
     grid-template-columns: 1fr;
   }
 
-  .my-loans-grid {
-    grid-template-columns: 1fr;
-  }
 
-  .my-loans-grid span {
-    border-right: 0;
-  }
 }
 
 .inventory-icon-button {
@@ -1727,101 +1659,7 @@
     grid-column: 1 / -1;
   }
 
-  .inventory-table-head {
-    display: none;
-  }
 
-  .inventory-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .inventory-table-row {
-    padding: 8px 0;
-  }
-
-  .inventory-table-row span {
-    border-right: 0;
-    padding: 6px 12px;
-  }
-
-  .inventory-grid span:nth-child(1)::before {
-    content: 'ID: ';
-    font-weight: 700;
-  }
-
-  .inventory-grid span:nth-child(2)::before {
-    content: 'Nombre: ';
-    font-weight: 700;
-  }
-
-  .inventory-grid span:nth-child(3)::before {
-    content: 'Categoría: ';
-    font-weight: 700;
-  }
-
-  .inventory-grid span:nth-child(4)::before {
-    content: 'Estado: ';
-    font-weight: 700;
-  }
-
-  .inventory-grid span:nth-child(5)::before {
-    content: 'Ubicación: ';
-    font-weight: 700;
-  }
-
-  .inventory-grid span:nth-child(6)::before {
-    content: 'Responsable: ';
-    font-weight: 700;
-  }
-
-  .inventory-grid span:nth-child(7)::before {
-    content: 'Acciones: ';
-    font-weight: 700;
-  }
-
-  .inventory-detail-card {
-    grid-template-columns: 1fr;
-    display: grid;
-  }
-
-  .docente-equipos-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .docente-equipos-grid span {
-    border-right: 0;
-    padding: 6px 12px;
-  }
-
-  .docente-equipos-grid span:nth-child(1)::before {
-    content: 'Artículo: ';
-    font-weight: 700;
-  }
-
-  .docente-equipos-grid span:nth-child(2)::before {
-    content: 'Código institucional: ';
-    font-weight: 700;
-  }
-
-  .docente-equipos-grid span:nth-child(3)::before {
-    content: 'Número de Serie: ';
-    font-weight: 700;
-  }
-
-  .docente-equipos-grid span:nth-child(4)::before {
-    content: 'Ubicación: ';
-    font-weight: 700;
-  }
-
-  .docente-equipos-grid span:nth-child(5)::before {
-    content: 'Estado: ';
-    font-weight: 700;
-  }
-
-  .docente-equipos-grid span:nth-child(6)::before {
-    content: 'Acciones: ';
-    font-weight: 700;
-  }
 }
 
 @media (max-width: 780px) {
@@ -2092,7 +1930,8 @@
 .users-table-card {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   background: var(--color-bg-panel);
 }
 
@@ -2102,6 +1941,7 @@
   grid-template-columns: 150px 1.2fr 1.3fr 1fr 110px 130px;
   gap: 8px;
   align-items: center;
+  min-width: 900px;
 }
 
 .users-table-head {
@@ -2253,7 +2093,8 @@
 .table-card {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   background: var(--color-bg-panel);
 }
 
@@ -2263,6 +2104,7 @@
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 8px;
   padding: 10px 14px;
+  min-width: 800px;
 }
 
 .table-head {
@@ -2335,23 +2177,8 @@
     font-size: 1.5rem;
   }
 
-  .table-head,
-  .table-row {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   .placeholder-grid {
     grid-template-columns: 1fr;
-  }
-
-  .users-table-head {
-    display: none;
-  }
-
-  .users-row {
-    grid-template-columns: 1fr;
-    gap: 6px;
-    padding: 12px;
   }
 
   .users-actions {
@@ -2561,12 +2388,17 @@
   align-items: start;
 }
 
+.dashboard-docente-main {
+  min-width: 0;
+}
+
 .dashboard-docente-kpi {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .dashboard-docente-loan-grid {
-  grid-template-columns: 1.4fr 1fr 1fr 0.85fr 0.65fr;
+  grid-template-columns: 1.2fr 1fr 110px 1fr 120px;
+  min-width: 800px;
 }
 
 .dashboard-docente-alerts {
@@ -2799,11 +2631,7 @@
   }
 }
 
-@media (max-width: 780px) {
-  .dashboard-docente-loan-grid {
-    grid-template-columns: 1fr;
-  }
-}
+
 
 /* ---------- Docente Catalog ---------- */
 .docente-catalog-grid {

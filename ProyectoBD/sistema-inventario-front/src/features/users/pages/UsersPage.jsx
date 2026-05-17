@@ -205,7 +205,7 @@ function UsersPage() {
         {errorMessage ? <p className="feedback-error">{errorMessage}</p> : null}
 
         <div className="inventory-filters-card mb-4" style={{ padding: '16px', marginBottom: '20px' }}>
-          <div className="inventory-filter-grid" style={{ gridTemplateColumns: '1fr auto', alignItems: 'flex-end' }}>
+          <div className="inventory-filter-grid users-filter-grid">
             <label>
               <span style={{ fontWeight: '700', color: '#4a5168', fontSize: '0.9rem', marginBottom: '8px', display: 'block' }}>Buscar Usuario</span>
               <input 
